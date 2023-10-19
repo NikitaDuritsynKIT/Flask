@@ -11,7 +11,6 @@ def register():
     password = data["password"]
 
     new_user = register_user(name, email, password)
-    print(new_user)
     if not new_user:
         return (jsonify({"error": f"Email already exists!"}), 400)
 
