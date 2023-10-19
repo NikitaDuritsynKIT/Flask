@@ -1,5 +1,8 @@
 from flask import Blueprint, request, jsonify
 from .services import register_user  # , get_user_by_username, check_user_credentials
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -19,8 +22,19 @@ def register():
 
 @auth_bp.route("/login", methods=["POST"])
 def login():
-    pass
+    data = request.get_json()
+    email = data["email"]
+    password = data["password"]
 
-@auth_bp.route("/logout", methods=["POST"])
-def logout():
-    pass
+    
+    # validation
+    if email != "test" or password != "test":
+        return jsonify({"msg": "Bad username or password"}), 401
+
+    access_token = create_access_token(identity=email)
+    return jsonify(access_token=access_token)
+
+
+# @auth_bp.route("/logout", methods=["POST"])
+# def logout():
+#     pass
