@@ -13,12 +13,3 @@ def register_user(name, email, password):
     db.session.commit()
 
     return new_user
-
-# def get_user_by_username(username):
-#     return User.query.filter_by(username=username).first()
-
-# def check_user_credentials(username, password):
-#     user = get_user_by_username(username)
-#     if not user or not user.check_password(password):
-#         return None
-#     return user

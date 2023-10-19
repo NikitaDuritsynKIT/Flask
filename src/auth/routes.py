@@ -18,21 +18,10 @@ def register():
     return (jsonify({"message": f"Registration successful!"}), 200)
 
 
-# @auth_bp.route('/login', methods=['POST'])
-# def login():
-#     username = request.form.get('username')
-#     password = request.form.get('password')
+@auth_bp.route("/login", methods=["POST"])
+def login():
+    pass
 
-#     user = check_user_credentials(username, password)
-#     if not user:
-#         flash('Check your login details and try again.')
-#         return redirect(url_for('auth.login'))
-
-#     login_user(user)
-#     return redirect(url_for('main.index'))
-
-# @auth_bp.route('/logout')
-# @login_required
-# def logout():
-#     logout_user()
-#     return redirect(url_for('main.index'))
+@auth_bp.route("/logout", methods=["POST"])
+def logout():
+    pass
