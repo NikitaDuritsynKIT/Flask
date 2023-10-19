@@ -1,15 +1,36 @@
+from flask import jsonify
 from database import db
 from src.users.models import User
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
 
-def register_user(name, email, password):
-    user = User.query.filter_by(email=email).first()
-    if user:
-        return None  # Или можете вернуть ошибку
 
-    new_user = User(email=email, name = name)
-    new_user.set_password(password)
+def register_user(data):
+    try:
+        user = User.query.filter_by(email=data["email"]).first()
+        if user:
+            return jsonify({"error": "This email already exists"}), 400
 
-    db.session.add(new_user)
-    db.session.commit()
+        new_user = User(email=data["email"], name=data["name"])
+        new_user.set_password(data["password"])
 
-    return new_user
+        db.session.add(new_user)
+        db.session.commit()
+
+        return jsonify({"message": "Registration successful!"}), 200
+    except:
+        return jsonify({"error": "Something went wrong"})
+
+def login_user (data):
+    try:
+        user = User.query.filter_by(email=data["email"]).first()
+        if User.check_password(user, data['password']):
+            print(user.email)
+            access_token = create_access_token(identity=user.email)
+            return jsonify(access_token=access_token)
+
+        return jsonify({"message": "This password not valid"}), 400
+    except:
+        return jsonify({"error": "Something went wrong"})
+
+    
