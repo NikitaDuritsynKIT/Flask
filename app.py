@@ -13,7 +13,7 @@ from src.posts.routes import posts_bp
 from src.auth.routes import auth_bp
 
 app = Flask(__name__)
-app.config.from_object(config['dev'])
+app.config.from_object(config["dev"])
 
 
 # setup extensions
@@ -30,4 +30,5 @@ app.register_blueprint(auth_bp, url_prefix="/auth")
 
 if __name__ == "__main__":
     from waitress import serve
+
     serve(app, host="0.0.0.0", port=FLASK_RUN_PORT)

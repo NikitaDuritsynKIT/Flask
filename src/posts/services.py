@@ -1,15 +1,16 @@
-from database import db
+from flask import jsonify
+from .models import db, Post
 from src.users.models import User
 
-def create_post(data):
-    user = User.query.filter_by(email=email).first()
-    if user:
-        return None  # Или можете вернуть ошибку
-
-    new_user = User(email=email, name = name)
-    new_user.set_password(password)
-
-    db.session.add(new_user)
-    db.session.commit()
-
-    return new_user
+def create_post(data, user_id):
+    try:
+        user = User.query.filter_by(id=user_id).first()
+        data['user_id'] = user_id
+        if user:
+            new_post = Post(**data)
+            db.session.add(new_post)
+            db.session.commit()
+            return jsonify({"message": "Post created!"}), 200
+        return  jsonify({"error": "This user not found"}), 400
+    except:
+        pass

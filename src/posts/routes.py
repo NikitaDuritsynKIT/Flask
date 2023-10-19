@@ -1,16 +1,11 @@
 from flask import Blueprint, request
-from .models import db, Post
+from .services import create_post
 from flask_jwt_extended import jwt_required
-
 posts_bp = Blueprint('posts', __name__)
 
-@posts_bp.route('/create_post', methods=['POST'])
+@posts_bp.route('/create_post/<int:user_id>', methods=['POST'])
 @jwt_required()
-def create_post():
-    
-    pass
-
-@posts_bp.route('/delete_post/<int:id>', methods=['DELETE'])
-def delete_post(id):
-    # Здесь код для удаления поста
-    pass
+def create(user_id):
+    data = request.get_json()
+    result = create_post(data, user_id)
+    return result
