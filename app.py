@@ -10,6 +10,8 @@ from src.auth.routes import auth_bp
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:zxc@localhost:5432/flask'
+app.config["JWT_SECRET_KEY"] = "super-secret"
+
 
 db.init_app(app)
 migrate = Migrate(app, db)
