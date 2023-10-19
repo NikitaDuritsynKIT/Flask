@@ -8,10 +8,15 @@ DB_PASS = os.environ.get("DB_PASS")
 DB_HOST = os.environ.get("DB_HOST")
 DB_PORT = os.environ.get("DB_PORT")
 DB_NAME = os.environ.get("DB_NAME")
+
 FLASK_RUN_PORT = int(os.environ.get("FLASK_RUN_PORT"))
 
 
 class Config:
+    OIDC_CLIENT_SECRETS = 'client_secrets.json'
+    OIDC_COOKIE_SECURE = False
+    OIDC_CALLBACK_ROUTE = '/oidc/callback'
+    # OIDC_CALLBACK_ROUTE = ['openid', 'email', 'profile']
     JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY")
 
 
