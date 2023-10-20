@@ -1,0 +1,31 @@
+
+{
+    "web": {
+        "issuer": "https://accounts.google.com",
+        "client_id": "156001682138-3s2qruhp361gq30evv3r24f1fifiougm.apps.googleusercontent.com",
+        "client_secret": "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",
+
+        "userinfo_uri": "https://www.googleapis.com/oauth2/v3/userinfo"
+    }
+}
+
+{
+    "web": {
+        "issuer": "https://accounts.google.com",
+        "client_id": "156001682138-3s2qruhp361gq30evv3r24f1fifiougm.apps.googleusercontent.com",
+        "client_secret": "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",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://accounts.google.com/o/oauth2/token",
+        "redirect_uris": [
+            "http://localhost:3000/oidc/callback"
+        ],
+        "userinfo_uri": "https://www.googleapis.com/oauth2/v3/userinfo"
+    }
+}
+
+// NEXT_PUBLIC_OIDC_AUTHORITY = https://accounts.google.com
+// NEXT_PUBLIC_OIDC_CLIENT_ID = 156001682138-3s2qruhp361gq30evv3r24f1fifiougm.apps.googleusercontent.com
+// NEXT_PUBLIC_OIDC_REDIRECT_URI = http://localhost:3000/callback_oidc
+// NEXT_PUBLIC_OIDC_SCOPE = openid email profile
+// NEXT_PUBLIC_OIDC_RESPONSE_TYPE = code
+// NEXT_PUBLIC_OIDC_CLIENT_SECRET = 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
